@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Belajar.3CD | Matematika</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+.quiz-card {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border-left: 5px solid #0d6efd;
+    text-align: left;
+}
+
+.ts-button {
+    display: inline-block;
+    background-color: #0d6efd;
+    color: white;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.quiz-btn {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: left;
+}
+
+.quiz-btn:hover:not(:disabled) {
+    background-color: #f8f9fa;
+}
+
+/* Status colors applied by JS */
+.btn-success {
+    background-color: #e8f5e9 !important;
+    border-color: #198754 !important;
+    color: #198754;
+    font-weight: bold;
+}
+
+.btn-danger {
+    background-color: #f8d7da !important;
+    border-color: #dc3545 !important;
+    color: #dc3545;
+}
+
+.explanation {
+    background-color: #fff3cd;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #ffc107;
+    font-size: 0.9rem;
+    overflow: hidden;
+}
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg   sticky-top bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">Belajar.3CD</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="info.html">Info</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Belajar
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="math.html">Matematika</a></li>
+            <li><a class="dropdown-item" href="science.html">Ilmu Alam</a></li>
+          </ul>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script> 
+
+    <div class="card quiz-card" id="quiz-container">
+    <div class="quiz-header">
+        <span class="badge bg-primary" id="question-number">Pertanyaan 1</span>
+        <h2 class="mt-2" id="question-text">Memuat pertanyaan...</h2>
+    </div>
+
+    <div class="quiz-options" id="options-container"></div>
+
+    <div class="explanation mt-3" id="explanation-box" style="display: none;">
+        <strong>Penjelasan:</strong>
+        <p id="explanation-text"></p>
+        <button class="ts-button mt-2" id="next-btn" onclick="nextQuestion()" style="width: auto; float: right;">Lanjut</button>
+    </div>
+</div>
+
+</div>
+<script>
+
+const myQuestions = [
+    {
+        question: "Berapa 15 dibagi 3",
+        options: ["3", "5", "15"],
+        correctIndex: 1,
+        explanation: "Jawabannya adalah 5 karena tiga kelompok yang masing-masing terdiri dari lima jumlahnya lima belas."
+    },
+    {
+        question: "Berapa 12 dibagi 2",
+        options: ["12", "3", "6"],
+        correctIndex: 2, 
+        explanation: "Jawabannya adalah 6 karena dua kelompok yang masing-masing terdiri dari enam jumlahnya dua belas."
+    },
+    {
+        question: "Berapa 20 dibagi 5",
+        options: ["2", "5", "4"],
+        correctIndex: 2,
+        explanation: "Jawabannya adalah 4 karena lima kelompok yang masing-masing terdiri dari empat jumlahnya dua puluh."
+    }
+];
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+function loadQuestion() {
+    const currentQuiz = myQuestions[currentQuestionIndex];
+    
+    document.getElementById('question-number').innerText = `Pertanyaan ${currentQuestionIndex + 1} dari ${myQuestions.length}`;
+    document.getElementById('question-text').innerText = currentQuiz.question;
+    
+    const optionsContainer = document.getElementById('options-container');
+    optionsContainer.innerHTML = '';
+    document.getElementById('explanation-box').style.display = 'none';
+    
+    currentQuiz.options.forEach((optionText, index) => {
+        const button = document.createElement('button');
+        button.className = 'quiz-btn';
+        button.innerText = optionText;
+        button.onclick = function() { checkAnswer(index); };
+        optionsContainer.appendChild(button);
+    });
+}
+
+function checkAnswer(selectedIndex) {
+    const currentQuiz = myQuestions[currentQuestionIndex];
+    const buttons = document.querySelectorAll('.quiz-btn');
+    
+    buttons.forEach(btn => btn.disabled = true);
+    buttons[currentQuiz.correctIndex].classList.add('btn-success');
+    
+    if (selectedIndex === currentQuiz.correctIndex) {
+        score++;
+    } else {
+        buttons[selectedIndex].classList.add('btn-danger');
+    }
+    
+    document.getElementById('explanation-text').innerText = currentQuiz.explanation;
+    document.getElementById('explanation-box').style.display = 'block';
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    
+    if (currentQuestionIndex < myQuestions.length) {
+        loadQuestion();
+    } else {
+        const finalPercentage = Math.round((score / myQuestions.length) * 100);
+        
+        document.getElementById('quiz-container').innerHTML = `
+            <div class="text-center p-4">
+                <span class="badge bg-success mb-2">Selesai!</span>
+                <h2>Kamu telah menyelesaikan kuis!</h2>
+                <h3 class="mt-3 mb-3">Skor Anda: <span class="text-primary">${score} / ${myQuestions.length}</span> (${finalPercentage}%)</h3>
+                <p>${finalPercentage >= 70 ? 'Hebat! Kamu memahami materi dengan sangat baik.' : 'Coba lagi yuk untuk memperdalam pemahamanmu.'}</p>
+                <div class="d-flex flex-column gap-2 mt-4">
+                    <button class="ts-button" onclick="location.reload()">Ulangi Kuis</button>
+                    <a class="ts-button" href="math.html" style="background-color: #6c757d; text-decoration: none;">Kembali ke Beranda</a>
+                </div>
+            </div>
+        `;
+    }
+}
+
+loadQuestion();
+</script>
+  </body>
+</html> 

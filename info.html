@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Belajar.3CD | Matematika</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+  /* The container that holds all cards */
+  .grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Creates two equal columns */
+    gap: 20px;
+    max-width: 800px; /* Adjust this to make the whole thing smaller/larger */
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  /* General Card Styling */
+  .card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  /* The "Smoller" image placeholder for top cards */
+  .square-placeholder {
+    width: 40px;
+    height: 40px;
+    background: #e2e8f0;
+    margin: 0 auto 15px;
+    border-radius: 6px;
+  }
+
+  /* The bottom card spanning both columns */
+  .card-wide {
+    grid-column: span 2; /* This makes it as long as the 2 combined */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+    /* The container for the big image */
+    .wide-placeholder {
+        width: 100%;
+        height: auto; /* This is the "morphing" secret—it grows with the image */
+        background: transparent; /* Removes the grey box look */
+        margin-bottom: 15px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+  /* Buttons & Text */
+  .ts-button {
+    display: inline-block;
+    background-color: #0d6efd;
+    color: white;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  /* Responsive: Stacks them all on mobile */
+  @media (max-width: 600px) {
+    .grid-wrapper {
+      grid-template-columns: 1fr;
+    }
+    .card-wide {
+      grid-column: span 1;
+    }
+  }
+</style>
+</head>
+  <body>
+    <nav class="navbar navbar-expand-lg   sticky-top bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">Belajar.3CD</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="info.html">Info</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Belajar
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="math.html">Matematika</a></li>
+            <li><a class="dropdown-item" href="science.html">Ilmu Alam</a></li>
+          </ul>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <center>
+        <h1>Gap Sosial</h1>
+    </center>
+    
+    <div class="grid-wrapper">
+  <div class="card card-small">
+    <h2>Definisi</h2>
+    <p>Ketidakseimbangan atau jarak mencolok dalam masyarakat terkait status, ekonomi, atau budaya.</p>
+  </div>
+
+  <div class="card card-small">
+    <h2>Contoh</h2>
+    <p>Perbedaan mencolok dalam akses, peluang, dan taraf hidup antar kelompok masyarakat, seperti kaya-miskin, desa-kota, atau akses teknologi.</p>
+    <br>
+  </div>
+
+  <div class="card card-wide">
+    <div class="wide-placeholder">
+       <img src="images/help.png" class="card-img">
+    </div>
+  </div>
+</div>
+  
+  </body>
+</html> 
