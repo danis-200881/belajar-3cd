@@ -6,17 +6,15 @@
     <title>Belajar.3CD | Matematika</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
-  /* The container that holds all cards */
   .grid-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Creates two equal columns */
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
-    max-width: 800px; /* Adjust this to make the whole thing smaller/larger */
+    max-width: 800px;
     margin: 40px auto;
     padding: 0 20px;
   }
 
-  /* General Card Styling */
   .card {
     background: white;
     border: 1px solid #ddd;
@@ -26,7 +24,6 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   }
 
-  /* The "Smoller" image placeholder for top cards */
   .square-placeholder {
     width: 40px;
     height: 40px;
@@ -35,25 +32,22 @@
     border-radius: 6px;
   }
 
-  /* The bottom card spanning both columns */
   .card-wide {
-    grid-column: span 2; /* This makes it as long as the 2 combined */
+    grid-column: span 2;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-    /* The container for the big image */
     .wide-placeholder {
         width: 100%;
-        height: auto; /* This is the "morphing" secret—it grows with the image */
-        background: transparent; /* Removes the grey box look */
+        height: auto;
+        background: transparent;
         margin-bottom: 15px;
         border-radius: 8px;
         overflow: hidden;
     }
 
-  /* Buttons & Text */
   .ts-button {
     display: inline-block;
     background-color: #0d6efd;
@@ -65,7 +59,6 @@
     margin-top: 10px;
   }
 
-  /* Responsive: Stacks them all on mobile */
   @media (max-width: 600px) {
     .grid-wrapper {
       grid-template-columns: 1fr;
